@@ -2,8 +2,10 @@
 <div class="m-5 w-96">
   <iframe src=<%="https://embed.spotify.com/?uri=#{@episode.uri}"%> width="300" height="200" frameborder="0" allowtransparency="true"> </iframe>
   <%= turbo_stream_from @episode.id %>
-    <ul id="comment-list" role="list" class="space-y-6">
+    <ul id="-list" role="list" class="space-y-6">
+      <div id="comment-list">
       <%= render CommentComponent.with_collection(@comments) %>
+      </div>
     </ul>
   <div class="mt-6 flex gap-x-3">
     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="h-6 w-6 flex-none rounded-full bg-gray-50">

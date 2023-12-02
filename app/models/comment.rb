@@ -5,13 +5,12 @@ class Comment < ApplicationRecord
   private
 
   def append_new_comment
-    p "EPI"
-    p  self.episode
     broadcast_append_to(
       self.episode,
       target: "comment-list",
       html: ApplicationController.render(
-        CommentComponent.new(comment: self)
+        CommentComponent.new(comment: self),
+        layout: false
       )
     )
   end
