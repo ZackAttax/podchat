@@ -1,7 +1,0 @@
-<%# <%= turbo_stream.replace "new_comment_form" do %>
-  <%# <%= render CommentFormComponent.new(@form) %>
-<%# <% end %>
-
-<%= turbo_stream.append @m do %>
-  <%= render MessageComponent.new(message: @message) %>
-<% end %>

@@ -12,4 +12,7 @@ class SpotifyApi
   def self.find_episode(id)
     RSpotify::Episode.find(id, market: "US")
   end
+
+
+
 end
