@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-slate-100">
   <head>
     <title>PodChat</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,8 +12,8 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-
+    <main class="">
+        <%= render Application::NavbarComponent.new(current_user: "ME") %>
       <% if notice %>
         <p class="alert alert-success"><%= notice %></p>
       <% end %>
@@ -21,7 +21,7 @@
       <% if alert %>
           <p class="alert alert-danger"><%= alert %></p>
       <% end %>
-      
+
       <%= yield %>
     </main>
   </body>

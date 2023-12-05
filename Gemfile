@@ -79,3 +79,9 @@ end
 gem "letter_opener", "~> 1.8"
 
 gem "view_component", "~> 3.7"
+
+gem "rspotify", "~> 2.12"
+
+gem "dotenv-rails", "~> 2.8"
+
+gem "omniauth-spotify", "~> 0.0.13"
