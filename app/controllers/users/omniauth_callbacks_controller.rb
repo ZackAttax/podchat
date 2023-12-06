@@ -2,11 +2,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token, only: :spotify
 
   def spotify
-    binding.break
-    pp request.env["omniauth.auth"]
+    # binding.break
+    RSpotify.raw_response = true
+
     @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    p "HERE"
-    pp
+    pp SpotifyApi.get_currently_playing("s")
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
