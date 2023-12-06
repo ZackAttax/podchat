@@ -85,3 +85,5 @@ gem "rspotify", "~> 2.12"
 gem "dotenv-rails", "~> 2.8"
 
 gem "omniauth-spotify", "~> 0.0.13"
+
+gem "omniauth-rails_csrf_protection", "~> 1.0"
