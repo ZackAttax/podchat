@@ -312,12 +312,12 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.omniauth :spotify, ENV["SPOTIFY_ID"] , ENV["SPOTIFY_SECRET"], scope: %w(
-  playlist-read-private
-  user-read-private
-  user-read-email
-  user-read-currently-playing
-  user-follow-read
+  user-read-playback-state
+  user-modify-playback-state
   user-read-playback-position
+  user-read-currently-playing
+  user-read-email
+  user-follow-read
   user-read-recently-played
   user-library-read
 ).join(' ')

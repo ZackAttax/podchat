@@ -1,6 +1,10 @@
-<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-<div class="m-5 w-96">
-  <iframe src=<%="https://embed.spotify.com/?uri=#{@episode.uri}"%> width="300" height="200" frameborder="0" allowtransparency="true"> </iframe>
+
+<div class="m-5 w-96" data-controller="show" data-show-uri-value=<%= @episode.uri %> >
+  <div id="embed-iframe" data-show-target="episode"></div>
+
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+
+
   <%= turbo_stream_from @episode.id %>
     <ul id="-list" role="list" class="space-y-6">
       <div id="comment-list">
@@ -14,6 +18,7 @@
         <%= form.label :comment, "Add your comment", class: "block ml-5 text-sm font-medium leading-6 text-gray-900" %>
         <%= form.hidden_field :user, value: current_user.id %>
         <%= form.hidden_field :episode, value: @episode.id %>
+        <%= form.hidden_field :time_left, value: 0, 'data-show-target': 'timeStamp' %>
         <%= form.text_area :content, rows: 4, class: "block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6", placeholder:"Add your comment..." %>
       </div>
       <%= form.submit 'Post', class: "px-4 py-3 ml-3 font-medium bg-gray-300 text-neutal-900 rounded flex items-center cursor-pointer hover:bg-gray-400 focus:ring-4 ring-0 focus:ring-gray-100" %>

@@ -3,7 +3,6 @@ class EpisodesController < ApplicationController
     @episode = SpotifyApi.find_episode(params[:id])
     @comments = Comment.where(episode: params[:id]).all
     @comment = Comment.new
-
   end
 
   def index
