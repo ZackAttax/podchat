@@ -19,7 +19,6 @@ export default class extends Controller {
         };
         const callback = (EmbedController) => {
           EmbedController.addListener('playback_update', e => {
-            
             this.timeStampTarget.value = e.data.position
             });
         };
