@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :comments
 
   def self.from_omniauth(params)
-    user = User.find_or_initializ_by(email: params[:info][:email]) do |u|
+    user = User.find_or_initialize_by(email: params[:info][:email]) do |u|
       u.spotify_uid = params[:info][:uid]
       u.password = Devise.friendly_token[0, 20]
     end
@@ -16,7 +16,7 @@ class User < ApplicationRecord
     user.token_expires_at = params[:credentials][:token_expires_at]
 
     if user.save
-      { message: 'Tokens updated successfully' }
+      user
     else
       { error: user.errors.full_messages }
     end
