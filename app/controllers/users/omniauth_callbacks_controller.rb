@@ -10,6 +10,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: "Spotify") if is_navigational_format?
     else
       session["devise.spotify"] = request.env["omniauth.auth"].except(:extra)
+      set_flash_message(:alert, :success, kind: "Spotify")
       redirect_to new_user_registration_url
     end
   end
