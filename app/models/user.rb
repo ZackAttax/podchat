@@ -24,9 +24,10 @@ class User < ApplicationRecord
 
   def get_currently_playing
     check_token
-    respone = SpotifyApi.get_currently_playing(self.access_token)
-    if reponse[:code] == "401"
-      SpotifyApi.get_refresh_token(self.refresh_token)
+    response = SpotifyApi.get_currently_playing(self.access_token)
+    if response[:code] == "401"
+      refresh_response = SpotifyApi.get_refresh_token(self.refresh_token)
+      update_tokens(refresh_response) if refresh_response[:code] == "200"
       SpotifyApi.get_currently_playing(self.access_token)
     else
       response
@@ -35,19 +36,12 @@ class User < ApplicationRecord
 
   def check_token
     if token_expired?
-      response = SpotifyApi.get_refresh_token(self.refresh_token)
-    else
-      return true
-    end
-    if response[:code] == "200"
-      update_tokens(response)
-    else
-      response
+      refresh_response = SpotifyApi.get_refresh_token(self.refresh_token)
+      update_tokens(refresh_response) if refresh_response[:code] == "200"
     end
   end
 
   def update_tokens(response)
-    binding.break
     self.access_token = response[:access_token]
     self.refresh_token = response[:refresh_token] if response[:refresh_token].present?
     self.token_expires_at = Time.now + response[:expires_in]
