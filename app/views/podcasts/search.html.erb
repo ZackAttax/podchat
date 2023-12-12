@@ -4,13 +4,26 @@
 
   <%= form.label :query, "Search Podcast:", class: "block mb-2" %>
     <div class="flex space-x-3">
-      <%= form.text_field :query, class: "py-3 px-4 rounded border ring-0 focus:ring-4 focus:ring-grey-500 focus:shadow-none focus:border-gray-1000 focus:outline-none" %>
+      <%= form.text_field :query, value: @query, class: "py-3 px-4 rounded border ring-0 focus:ring-4 focus:ring-grey-500 focus:shadow-none focus:border-gray-1000 focus:outline-none" %>
 
       <%= form.submit 'Search', class: "px-4 py-3 font-medium
     bg-gray-300 text-neutal-900 rounded flex items-center cursor-pointer hover:bg-gray-400 focus:ring-4 ring-0 focus:ring-gray-100" %>
     </div>
   <% end %>
-    <ul role="list" class="divide-y divide-gray-100">
-      <%= render PodcastComponent.with_collection(@podcasts) %>
-    </ul>
+
+  <% if @pagy.present? %>
+    <div class="mt-4">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% end %>
+
+  <ul role="list" class="divide-y divide-gray-100">
+    <%= render PodcastComponent.with_collection(@podcasts) %>
+  </ul>
+
+  <% if @pagy.present? %>
+    <div class="mt-4">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% end %>
 </div>

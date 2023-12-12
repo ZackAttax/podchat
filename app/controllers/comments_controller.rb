@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
           "comment-form",
           partial: '/comments/form',
           locals: {comment: Comment.new,
-          episode_id: current_episode,
+          episode: current_episode,
           }
         )
       end

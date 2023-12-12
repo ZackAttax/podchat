@@ -180,6 +180,7 @@ GEM
     omniauth-spotify (0.0.13)
       omniauth-oauth2 (~> 1.1)
     orm_adapter (0.5.0)
+    pagy (6.2.0)
     pg (1.5.4)
     psych (5.1.1.1)
       stringio
@@ -302,6 +303,7 @@ DEPENDENCIES
   letter_opener (~> 1.8)
   omniauth-rails_csrf_protection (~> 1.0)
   omniauth-spotify (~> 0.0.13)
+  pagy (~> 6.2)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)

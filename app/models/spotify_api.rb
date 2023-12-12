@@ -21,8 +21,16 @@ class SpotifyApi
     end
   end
 
-  def self.search_shows(params)
-    RSpotify::Show.search(params, market: "US")
+  def self.search_shows(query, offset= 0, limit= 20)
+    RSpotify::Show.search(query, offset: offset, limit: limit, market: "US")
+  end
+
+  def self.show_total_episodes(id)
+    RSpotify.raw_response = true
+    show = RSpotify::Show.find(id, market: "US")
+    RSpotify.raw_response = false
+
+    JSON.parse(show)["total_episodes"]
   end
 
   def self.find_show(id)

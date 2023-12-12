@@ -31,10 +31,6 @@ export default class extends Controller {
     }
   }
 
-  episodeClick(event) {
-    const spotifyId = event.currentTarget.dataset.spotifyId;
-    this.embedController.loadUri(spotifyId);
-  }
 
   get embedController() {
     return this.data.get('embedController');

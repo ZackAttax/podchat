@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   after_create_commit :append_new_comment
 
-  def timstamp_hour_minute_second
+  def timestamp_hour_minute_second
     seconds = self.timestamp / 1000
     hours = seconds / 3600
     minutes = (seconds % 3600) / 60
