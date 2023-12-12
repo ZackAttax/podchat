@@ -4,9 +4,6 @@
       <h1 class="m-5">Welcome to PodChat, <%= current_user.email %></h1>
       <%= link_to 'Search for Podcast', podcasts_search_path, class: "rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm m-5 text-center font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
       <%= button_to "Log out", destroy_user_session_path, :method => :delete, class: "rounded-md bg-indigo-600 px-3.5 m-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-       <%# <%- resource_class.omniauth_providers.each do |provider| %>
-    <%# <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br /> %> %>
-  <%# <% end %> %>
     <% else %>
       <%= link_to 'Sign in', new_user_session_path %>
     <% end %>

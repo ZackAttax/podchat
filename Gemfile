@@ -87,3 +87,5 @@ gem "dotenv-rails", "~> 2.8"
 gem "omniauth-spotify", "~> 0.0.13"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+gem "pagy", "~> 6.2"

@@ -2,11 +2,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token, only: :spotify
 
   def spotify
-    # binding.break
-    RSpotify.raw_response = true
-
-    @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    pp SpotifyApi.get_currently_playing("s")
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
@@ -15,6 +10,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: "Spotify") if is_navigational_format?
     else
       session["devise.spotify"] = request.env["omniauth.auth"].except(:extra)
+      set_flash_message(:alert, :success, kind: "Spotify")
       redirect_to new_user_registration_url
     end
   end
