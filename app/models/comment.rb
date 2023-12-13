@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 class Comment < ApplicationRecord
   belongs_to :user
-  after_create_commit :append_new_comment
   before_create :check_currently_playing
+  after_create_commit :append_new_comment
 
-  def timestamp_hour_minute_second
+  def human_readable_timestamp
     seconds = self.timestamp / 1000
     hours = seconds / 3600
     minutes = (seconds % 3600) / 60
@@ -17,8 +17,8 @@ class Comment < ApplicationRecord
 
   def check_currently_playing
     episode_and_timestamp = user.get_currently_playing_episode_and_timestamp
-    if episode_and_timestamp[:id] == episode
-      self.timestamp = episode_and_timestamp[:timestamp]
+    if episode_and_timestamp.dig(:id) == episode
+      timestamp = episode_and_timestamp[:timestamp]
     end
   end
 
