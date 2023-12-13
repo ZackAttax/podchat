@@ -14,16 +14,14 @@ class User < ApplicationRecord
     user.access_token = params[:credentials][:token]
     user.refresh_token = params[:credentials][:refresh_token]
     user.token_expires_at = Time.at(params[:credentials][:expires_at])
-    if user.save
-      user
-    else
-      { error: user.errors.full_messages }
-    end
+    user.save
   end
 
   def get_currently_playing_episode_and_timestamp
     response = self.get_currently_playing
-    { id: response['item']['id'], timestamp: response['progress_ms'] }
+    id = response.dig('item', 'id')
+    timestamp = response.dig('progress_ms')
+    { id: id, timestamp: timestamp }
   end
 
   def get_currently_playing
