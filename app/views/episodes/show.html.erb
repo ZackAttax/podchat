@@ -1,7 +1,11 @@
 
-<div class="m-5 w-96" data-controller="show" data-show-uri-value=<%= @episode.uri %> >
+<div class="mt-5 ml-5 w-96" data-controller="show" data-show-uri-value=<%= @episode.uri %> >
   <div id="embed-iframe" data-show-target="episode"></div>
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  
+  <div class="mb-5">
+    <%= link_to "Listen on Spotify", @episode.external_urls['spotify'], target: "_blank", class: "bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 focus:outline-none focus:shadow-outline-green active:bg-green-800" %>
+  </div>
 
   <%= turbo_stream_from @episode.id %>
   <ul id="-list" role="list" class="space-y-6">

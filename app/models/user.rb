@@ -1,7 +1,6 @@
+# frozen_string_literal: true
 require 'date'
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: %i[spotify]
@@ -20,6 +19,11 @@ class User < ApplicationRecord
     else
       { error: user.errors.full_messages }
     end
+  end
+
+  def get_currently_playing_episode_and_timestamp
+    response = self.get_currently_playing
+    { id: response['item']['id'], timestamp: response['progress_ms'] }
   end
 
   def get_currently_playing
