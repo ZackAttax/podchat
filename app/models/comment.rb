@@ -4,13 +4,6 @@ class Comment < ApplicationRecord
   before_create :check_currently_playing
   after_create_commit :append_new_comment
   scope :by_episode_in_order_by_timestamp, ->(episode) { where(episode: episode).order(timestamp: :asc) }
-  scope :closest_timestamp_less_than_current, ->(excluded_id, current_timestamp, episode) do
-    where.not(id: excluded_id)
-    .where(timestamp: (..current_timestamp), episode: episode)
-    .order(timestamp: :desc, created_at: :desc)
-    .pluck(:id)
-    .first
-  end
 
   def human_readable_timestamp
     seconds = self.timestamp / 1000
@@ -49,6 +42,7 @@ class Comment < ApplicationRecord
   end
 
   def determine_target_value
+    # if there is no closest comment the target value is the comment list
     find_closest_comment_id || "comment-list"
   end
 end

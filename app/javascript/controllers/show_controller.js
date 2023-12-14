@@ -4,13 +4,16 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ 'episode', 'timeStamp' ]
   static values = { uri: String }
+
   connect() {
+
     this.initializeEmbed();
     this.setupTurboStreamListener();
   }
 
   async initializeEmbed() {
     try {
+      console.log("ONE")
       window.onSpotifyIframeApiReady = (IFrameAPI) => {
         const element = this.episodeTarget;
         const options = {
