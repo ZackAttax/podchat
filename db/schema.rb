@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_13_163037) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_10_235427) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_13_163037) do
     t.string "episode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "timestamp", default: 0
+    t.integer "timestamp", default: 0
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 

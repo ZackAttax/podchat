@@ -1,0 +1,9 @@
+<%= binding.break %>
+console.log("HERE")
+  document.addEventListener('turbo:render', function () {
+    const commentList = document.getElementById('comment-list');
+    const comment = document.getElementById('<%= dom_id(@comment) %>');
+
+    // Your logic to insert the comment at the desired position
+    // You might want to use insertBefore, appendChild, or other DOM manipulation methods here
+  });
