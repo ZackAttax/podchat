@@ -31,8 +31,8 @@ class Comment < ApplicationRecord
       .where.not(id: id)
       .where("timestamp <= ? AND episode = ?", timestamp, episode)
       .order(timestamp: :desc, created_at: :desc)
-      .pluck(:id)
-      .first
+      .select(:id)
+      .first&.id
   end
 
   def append_new_comment
