@@ -1,7 +1,7 @@
 class EpisodesController < ApplicationController
   def show
     @episode = SpotifyApi.find_episode(params[:id])
-    @comments = Comment.where(episode: params[:id]).all
+    @comments = Comment.by_episode_in_order_by_timestamp(@episode.id)
     @comment = Comment.new
   end
 

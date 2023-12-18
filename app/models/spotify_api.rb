@@ -46,7 +46,7 @@ class SpotifyApi
       access_token = body['access_token']
       new_refresh_token = body['refresh_token']
       expires_in = body['expires_in']
-binding.break
+
       {code: response.code, access_token: access_token, refresh_token: new_refresh_token, expires_in: expires_in}
     else
       {code: response.code, body: response.body}

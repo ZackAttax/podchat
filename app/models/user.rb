@@ -15,6 +15,7 @@ class User < ApplicationRecord
     user.refresh_token = params[:credentials][:refresh_token]
     user.token_expires_at = Time.at(params[:credentials][:expires_at])
     user.save
+    user
   end
 
   def get_currently_playing_episode_and_timestamp
@@ -52,6 +53,6 @@ class User < ApplicationRecord
 
   def token_expired?
     current_datetime = DateTime.now
-    self.token_expires_at < current_datetime
+    token_expires_at < current_datetime
   end
 end
