@@ -7,13 +7,12 @@ export default class extends Controller {
 
   connect() {
 
-    this.initializeEmbed();
     this.setupTurboStreamListener();
+    this.initializeEmbed();
   }
 
   async initializeEmbed() {
     try {
-      console.log("ONE")
       window.onSpotifyIframeApiReady = (IFrameAPI) => {
         const element = this.episodeTarget;
         const options = {

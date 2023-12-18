@@ -17,8 +17,13 @@ class Comment < ApplicationRecord
   private
 
   def check_currently_playing
-    episode_and_timestamp = user.get_currently_playing_episode_and_timestamp
-    self.timestamp = episode_and_timestamp[:timestamp] if episode_and_timestamp[:id] == episode
+    # Fetch currently playing episode and timestamp if the user has an access token
+  episode_and_timestamp = user.get_currently_playing_episode_and_timestamp if user.access_token.present?
+
+  # Update timestamp if the episode ID matches the currently playing episode
+  if episode_and_timestamp.present? && episode_and_timestamp[:id] == episode
+    self.timestamp = episode_and_timestamp[:timestamp]
+  end
   end
 
   def find_closest_comment_id

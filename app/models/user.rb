@@ -53,6 +53,6 @@ class User < ApplicationRecord
 
   def token_expired?
     current_datetime = DateTime.now
-    self.token_expires_at < current_datetime
+    token_expires_at < current_datetime
   end
 end
