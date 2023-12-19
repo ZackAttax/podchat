@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: %i[spotify]
   has_many :comments
+  has_many :replies
+
 
   def self.from_omniauth(params)
     user = User.find_or_initialize_by(email: params[:info][:email]) do |u|

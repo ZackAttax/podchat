@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 class Comment < ApplicationRecord
-  belongs_to :user
   before_create :check_currently_playing
   after_create_commit :append_new_comment
   scope :by_episode_in_order_by_timestamp, ->(episode) { where(episode: episode).order(timestamp: :asc) }
+  belongs_to :user
+  has_many :replies
 
   def human_readable_timestamp
     seconds = self.timestamp / 1000
