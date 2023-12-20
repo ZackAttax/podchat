@@ -36,15 +36,6 @@ class RepliesController < ApplicationController
     params.require(:reply).permit(:content, :comment_id)
   end
 
-  def reply_or_replies
-    count = current_comment.replies.count
-    if count == 0
-      "Reply"
-    else
-      "#{count} #{pluralize(count, "Reply")}"
-    end
-  end
-
   def comment_replies_list_id
     current_comment.replies_list_id
   end
