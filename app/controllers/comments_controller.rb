@@ -26,6 +26,6 @@ class CommentsController < ApplicationController
   end
 
   def current_episode
-    params[:comment][:episode]
+    params.require[:comment].permit[:episode]
   end
 end

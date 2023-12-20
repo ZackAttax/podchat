@@ -15,6 +15,10 @@ class Comment < ApplicationRecord
     sprintf('%02d:%02d:%02d', hours, minutes, remaining_seconds)
   end
 
+  def replies_list_id
+    "comment-#{id}-replies"
+  end
+
   private
 
   def check_currently_playing
