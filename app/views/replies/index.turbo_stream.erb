@@ -3,7 +3,7 @@
 <% end %>
 
 <%= turbo_stream.update @current_comment.replies_list_id do %>
-  <ul>
+  <ul id=<%=  "#{@current_comment.replies_list_id}-list" %> >
     <%= render ReplyComponent.with_collection(@replies) %>
   </ul>
    <%= render 'replies/form', reply: Reply.new, comment: @current_comment %>
