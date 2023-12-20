@@ -6,7 +6,7 @@ class CommentComponent < ViewComponent::Base
   end
 
   def reply_or_replies
-    count = @comment.replies.count
+    count = @comment.replies.length
     pluralize(count, "Reply")
   end
 

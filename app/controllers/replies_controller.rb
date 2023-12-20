@@ -1,6 +1,6 @@
 class RepliesController < ApplicationController
   def index
-    @replies = current_comment.replies
+    @replies = current_comment.replies.includes(:user)
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to episodes_show_url(current_episode) }
