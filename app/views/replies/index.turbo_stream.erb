@@ -6,6 +6,6 @@
   <ul>
     <%= render ReplyComponent.with_collection(@replies) %>
   </ul>
-   <%= render 'comments/form', comment: Comment.new, episode: @current_episode %>
+   <%= render 'replies/form', reply: Reply.new, comment: @current_comment %>
 <% end %>
 

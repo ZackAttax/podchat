@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'comments/create'
   get 'comments/:comment_id/replies', to: 'replies#index', as: :comments_replies_index
   get 'comments/:comment_id/replies/hide', to: 'replies#hide', as: :comments_replies_hide
-  post 'comments/:comment_id/replies', to: 'comments#create', as: :comments_replies_create
+  post 'comments/:comment_id/replies', to: 'replies#create', as: :comments_replies_create
 
   get 'episodes/show/:id', to: 'episodes#show', as: :episodes_show
   get 'episodes/index'

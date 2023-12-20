@@ -8,7 +8,7 @@ class RepliesController < ApplicationController
   end
 
   def hide
-    @reply_or_replies = reply_or_replies
+    @count = current_comment.replies.count
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to episodes_show_url(current_episode) }
@@ -16,6 +16,24 @@ class RepliesController < ApplicationController
   end
 
   def create
+    current_user.replies.create(reply_params)
+
+    respond_to do |format|
+      format.html { redirect_to episodes_show(current_episode) }
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          "reply-form",
+          partial: '/replies/form',
+          locals: {reply: Reply.new,
+          comment: current_comment,
+          }
+        )
+      end
+    end
+  end
+
+  def reply_params
+    params.require(:reply).permit(:content, :comment_id)
   end
 
   def reply_or_replies
