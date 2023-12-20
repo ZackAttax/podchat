@@ -36,10 +36,6 @@ class RepliesController < ApplicationController
     params.require(:reply).permit(:content, :comment_id)
   end
 
-  def comment_replies_list_id
-    current_comment.replies_list_id
-  end
-
   def current_episode
     current_comment.episode
   end
