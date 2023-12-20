@@ -21,7 +21,7 @@ class RepliesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to episodes_show(current_episode) }
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update(
+        render turbo_stream: turbo_stream.replace(
           "reply-form",
           partial: '/replies/form',
           locals: {reply: Reply.new,

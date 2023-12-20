@@ -7,11 +7,7 @@ class CommentComponent < ViewComponent::Base
 
   def reply_or_replies
     count = @comment.replies.count
-    if count == 0
-      "Reply"
-    else
-      "#{count} #{pluralize(count, "Reply")}"
-    end
+    pluralize(count, "Reply")
   end
 
   def comment_replies_list_id

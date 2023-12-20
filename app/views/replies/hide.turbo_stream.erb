@@ -1,5 +1,5 @@
 <%= turbo_stream.replace "hide-comment-#{@current_comment.id}-link-to-replies" do %>
-  <%= link_to @count == 0 ? "Reply" : "#{@count} #{pluralize(@count, "Reply")}", comments_replies_index_path(@current_comment), id: "comment-#{@current_comment.id}-link-to-replies", data: { turbo_stream: "comment-#{ @current_comment.id }-replies" }, class: "text-xs text-indigo-600 hover:text-indigo-900" %>
+  <%= link_to "#{pluralize(@count, "Reply")}", comments_replies_index_path(@current_comment), id: "comment-#{@current_comment.id}-link-to-replies", data: { turbo_stream: "comment-#{ @current_comment.id }-replies" }, class: "text-xs text-indigo-600 hover:text-indigo-900" %>
  <% end %>
 
 <%= turbo_stream.update @current_comment.replies_list_id %>
