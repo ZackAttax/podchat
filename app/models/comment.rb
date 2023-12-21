@@ -19,6 +19,10 @@ class Comment < ApplicationRecord
     "comment-#{id}-replies"
   end
 
+  def list_id
+    "#{episode}-comment-#{id}"
+  end
+
   private
 
   def check_currently_playing
@@ -31,13 +35,12 @@ class Comment < ApplicationRecord
   end
   end
 
-  def find_closest_comment_id
+  def find_closest_comment_dom_id
     Comment
       .where.not(id: id)
       .where("timestamp <= ? AND episode = ?", timestamp, episode)
       .order(timestamp: :desc, created_at: :desc)
-      .select(:id)
-      .first&.id
+      .first&.list_id
   end
 
   def append_new_comment
@@ -53,6 +56,6 @@ class Comment < ApplicationRecord
 
   def determine_target_value
     # if there is no closest comment the target value is the comment list
-    find_closest_comment_id || "comment-list"
+    find_closest_comment_dom_id || "comment-list"
   end
 end
