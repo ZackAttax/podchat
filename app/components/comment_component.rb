@@ -9,8 +9,4 @@ class CommentComponent < ViewComponent::Base
     count = @comment.replies.length
     pluralize(count, "Reply")
   end
-
-  def comment_replies_list_id
-    @comment.replies_list_id
-  end
 end

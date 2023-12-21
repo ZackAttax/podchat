@@ -10,7 +10,7 @@
     </div>
     <p class="text-sm leading-6 text-gray-500"><%= @comment.content %></p></p>
       <%= link_to reply_or_replies, comments_replies_index_path(@comment), format: :turbo, id: "comment-#{@comment.id}-link-to-replies", data: { turbo_stream: "comment-#{ @comment.id }-replies" }, class: "text-xs text-indigo-600 hover:text-indigo-900" %>
-      <div id=<%= comment_replies_list_id %> >
+      <div id=<%= @comment.replies_list_id %> >
       </div>
   </div>
 </li>
