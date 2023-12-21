@@ -8,7 +8,7 @@ class RepliesController < ApplicationController
   end
 
   def hide
-    @count = current_comment.replies.count
+    @count = current_comment.replies.length
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to episodes_show_url(current_episode) }
