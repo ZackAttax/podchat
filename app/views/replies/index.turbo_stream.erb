@@ -1,0 +1,11 @@
+<%= turbo_stream.replace "comment-#{@current_comment.id}-link-to-replies" do %>
+  <%= link_to "Hide", comments_replies_hide_path(@current_comment), id: "hide-comment-#{@current_comment.id}-link-to-replies", data: { turbo_stream: "comment-#{ @current_comment.id }-replies" }, class: "text-xs text-indigo-600 hover:text-indigo-900" %>
+<% end %>
+
+<%= turbo_stream.update @current_comment.replies_list_id do %>
+  <ul id=<%=  "#{@current_comment.replies_list_id}-list" %> >
+    <%= render ReplyComponent.with_collection(@replies) %>
+  </ul>
+   <%= render 'replies/form', reply: Reply.new, comment: @current_comment %>
+<% end %>
+

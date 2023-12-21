@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 class Comment < ApplicationRecord
-  belongs_to :user
   before_create :check_currently_playing
   after_create_commit :append_new_comment
   scope :by_episode_in_order_by_timestamp, ->(episode) { where(episode: episode).order(timestamp: :asc) }
+  belongs_to :user
+  has_many :replies
 
   def human_readable_timestamp
     seconds = self.timestamp / 1000
@@ -12,6 +13,14 @@ class Comment < ApplicationRecord
     remaining_seconds = seconds % 60
 
     sprintf('%02d:%02d:%02d', hours, minutes, remaining_seconds)
+  end
+
+  def replies_list_id
+    "comment-#{id}-replies"
+  end
+
+  def list_id
+    "#{episode}-comment-#{id}"
   end
 
   private
@@ -26,13 +35,12 @@ class Comment < ApplicationRecord
   end
   end
 
-  def find_closest_comment_id
+  def find_closest_comment_dom_id
     Comment
       .where.not(id: id)
       .where("timestamp <= ? AND episode = ?", timestamp, episode)
       .order(timestamp: :desc, created_at: :desc)
-      .select(:id)
-      .first&.id
+      .first&.list_id
   end
 
   def append_new_comment
@@ -48,6 +56,6 @@ class Comment < ApplicationRecord
 
   def determine_target_value
     # if there is no closest comment the target value is the comment list
-    find_closest_comment_id || "comment-list"
+    find_closest_comment_dom_id || "comment-list"
   end
 end
