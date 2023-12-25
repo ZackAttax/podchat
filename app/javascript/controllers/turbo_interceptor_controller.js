@@ -9,6 +9,7 @@ export default class extends Controller {
   setupTurboStreamListener() {
     document.addEventListener("turbo:before-stream-render", (event) => {
       const fallbackToDefaultActions = event.detail.render
+      // the target is the id of the list item that the new element needs to go after
       const targetId = event.detail.newStream.target
       const targetElement = document.getElementById(targetId)
       event.detail.render = (streamElement) => {
