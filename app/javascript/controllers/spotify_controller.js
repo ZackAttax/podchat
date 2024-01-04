@@ -31,9 +31,9 @@ export default class extends Controller {
             this.timestampLabelTarget.innerHTML = hours + ":" + minutes + ":" + seconds;
           };
 
-          const removePlaybackListener = () => {
-            if (EmbedController._listeners['playback_update'] || EmbedController._listeners['playback_update'].length) {
-              EmbedController._listeners['playback_update'] = EmbedController._listeners['playback_update'].filter(storedHandler => playBackPositionBroadcast !== storedHandler);
+          const removePlaybackListener = (eventName, handler) => {
+            if (EmbedController._listeners[eventName] || EmbedController._listeners[eventName].length) {
+              EmbedController._listeners[eventName] = EmbedController._listeners[eventName].filter(storedHandler => handler !== storedHandler);
               };
             };
           const addPlaybackListener = () => {
@@ -41,7 +41,7 @@ export default class extends Controller {
           } 
     
           
-          this.textAreaTarget.addEventListener('focus', removePlaybackListener);
+          this.textAreaTarget.addEventListener('focus', () => { removePlaybackListener('playback_update', playBackPositionBroadcast); });
           this.textAreaTarget.addEventListener('blur', addPlaybackListener);
           EmbedController.addListener('playback_update', playBackPositionBroadcast);
         };
