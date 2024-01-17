@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to episodes_show(episode: current_episode) }
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update(
+        render turbo_stream: turbo_stream.replace(
           "comment-form",
           partial: '/comments/form',
           locals: {comment: Comment.new,

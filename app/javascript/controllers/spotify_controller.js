@@ -32,7 +32,7 @@ export default class extends Controller {
           };
 
           const removePlaybackListener = (eventName, handler) => {
-            if (EmbedController._listeners[eventName] || EmbedController._listeners[eventName].length) {
+            if (EmbedController._listeners[eventName] && EmbedController._listeners[eventName].length) {
               EmbedController._listeners[eventName] = EmbedController._listeners[eventName].filter(storedHandler => handler !== storedHandler);
               };
             };
