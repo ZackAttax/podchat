@@ -91,3 +91,5 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "pagy", "~> 6.2"
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem 'sendgrid-ruby'
