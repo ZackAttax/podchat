@@ -247,11 +247,14 @@ GEM
       omniauth-oauth2 (>= 1.6)
       rest-client (~> 2.0.2)
     ruby2_keywords (0.0.5)
+    ruby_http_client (3.5.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.15.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sendgrid-ruby (6.7.0)
+      ruby_http_client (~> 3.4)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -323,6 +326,7 @@ DEPENDENCIES
   redis (~> 4.0)
   rspotify (~> 2.12)
   selenium-webdriver
+  sendgrid-ruby
   sprockets-rails
   stimulus-rails
   tailwindcss-rails

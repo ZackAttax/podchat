@@ -1,1 +1,1 @@
-RSpotify::authenticate(ENV["SPOTIFY_ID"], ENV["SPOTIFY_SECRET"])
+RSpotify::authenticate(ENV["SPOTIFY_ID"], ENV["SPOTIFY_SECRET"]) if ENV["SPOTIFY_ID"] && ENV["SPOTIFY_SECRET"]
