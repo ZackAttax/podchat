@@ -78,7 +78,7 @@ end
 
 gem "letter_opener", "~> 1.8"
 
-gem "view_component", "~> 3.7"
+gem "view_component", "~> 3.9"
 
 gem "rspotify", "~> 2.12"
 
