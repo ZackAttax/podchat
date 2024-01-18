@@ -63,12 +63,12 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "pod_chat_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'pod-chat.fly.dev/' } # Replace with your actual domain
+  config.action_mailer.default_url_options = { host: 'pod-chat.fly.dev' } # Replace with your actual domain
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.sendgrid.net',
     port: 587,
-    domain: 'pod-chat.fly.dev/', # Replace with your actual domain
+    domain: 'pod-chat.fly.dev', # Replace with your actual domain
     user_name: 'apikey',
     password: ENV['SENDGRID_API_KEY'] || "",
     authentication: :plain,
