@@ -9,9 +9,10 @@ class User < ApplicationRecord
 
 
   def self.from_omniauth(params)
-    user = User.find_or_initialize_by(email: params[:info][:email]) do |u|
-      u.spotify_uid = params[:uid]
-      u.password = Devise.friendly_token[0, 20]
+    user = User.find_or_initialize_by(email: params[:info][:email]) do |user|
+      user.spotify_serid = params[:uid]
+      user.password = Devise.friendly_token[0, 20]
+      user.skip_confirmation!
     end
     user.access_token = params[:credentials][:token]
     user.refresh_token = params[:credentials][:refresh_token]
