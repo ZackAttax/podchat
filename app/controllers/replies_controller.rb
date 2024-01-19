@@ -1,4 +1,6 @@
 class RepliesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @replies = current_comment.replies.includes(:user)
     respond_to do |format|
