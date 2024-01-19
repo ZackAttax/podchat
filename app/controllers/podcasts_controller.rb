@@ -10,6 +10,7 @@ class PodcastsController < ApplicationController
   end
 
   def search
+    breadcrumbs.add "Search", podcasts_search_path
     @query = params[:query] || ""
     @pagy, @podcasts = pagy_custom_show(params[:query]) if params[:query].present?
   end

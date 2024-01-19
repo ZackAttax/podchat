@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'episodes/search'
 
   get 'podcasts/index'
-  get 'podcasts/show/:id', to: 'podcasts#show'
+  get 'podcasts/show/:id', to: 'podcasts#show', as: :podcasts_show
   get 'podcasts/search'
 
   # get '/users/spotify/omniauth_authorize', to: 'users/omniauth_callbacks#spotify', as: :user_spotify_omniauth_authorize
