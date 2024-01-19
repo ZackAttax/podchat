@@ -18,10 +18,6 @@ class PodcastsController < ApplicationController
 
   private
 
-  def add_search_to_breadcrumb
-    add_breadcrumb "Search", podcasts_search_path
-  end
-
   def pagy_custom_show(query)
     pagy = Pagy.new(count: SpotifyApi.search_shows(query).total, page: params[:page])
     [pagy, SpotifyApi.search_shows(query, pagy.offset, pagy.items)]
