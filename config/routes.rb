@@ -9,12 +9,12 @@ Rails.application.routes.draw do
   get 'comments/:comment_id/replies/hide', to: 'replies#hide', as: :comments_replies_hide
   post 'comments/:comment_id/replies', to: 'replies#create', as: :comments_replies_create
 
-  get 'episodes/show/:id', to: 'episodes#show', as: :episodes_show
+  get 'episodes/:id', to: 'episodes#show', as: :episode
   get 'episodes/index'
   get 'episodes/search'
 
   get 'podcasts/index'
-  get 'podcasts/show/:id', to: 'podcasts#show'
+  get 'podcasts/show/:id', to: 'podcasts#show', as: :podcasts_show
   get 'podcasts/search'
 
   # get '/users/spotify/omniauth_authorize', to: 'users/omniauth_callbacks#spotify', as: :user_spotify_omniauth_authorize

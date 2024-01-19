@@ -1,9 +1,13 @@
 class PodcastsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :add_search_to_breadcrumb
+
   def index
   end
 
   def show
     @podcast = SpotifyApi.find_show(params[:id])
+    add_breadcrumb @podcast.name, podcasts_show_url(@podcast.id)
     @pagy, @episodes = pagy_custom_episode(@podcast)
   end
 

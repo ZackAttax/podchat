@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
   end
 
@@ -6,7 +8,7 @@ class CommentsController < ApplicationController
     current_user.comments.create(comment_params)
 
     respond_to do |format|
-      format.html { redirect_to episodes_show(episode: current_episode) }
+      format.html { redirect_to episode(episode: current_episode) }
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
           "comment-form",
