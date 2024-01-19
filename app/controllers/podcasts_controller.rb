@@ -6,11 +6,13 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = SpotifyApi.find_show(params[:id])
+    add_breadcrumb "Search", podcasts_search_path
+    add_breadcrumb @podcast.name, podcasts_show_url(@podcast.id)
     @pagy, @episodes = pagy_custom_episode(@podcast)
   end
 
   def search
-    breadcrumbs.add "Search", podcasts_search_path
+   add_breadcrumb "Search", podcasts_search_path
     @query = params[:query] || ""
     @pagy, @podcasts = pagy_custom_show(params[:query]) if params[:query].present?
   end

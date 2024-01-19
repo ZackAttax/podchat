@@ -94,4 +94,4 @@ gem "dockerfile-rails", ">= 1.6", :group => :development
 
 gem 'sendgrid-ruby'
 
-gem "breadcrumbs", "~> 0.3.0"
+gem "breadcrumbs_on_rails"

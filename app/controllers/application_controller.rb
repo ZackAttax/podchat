@@ -1,8 +1,14 @@
 class ApplicationController < ActionController::Base
-  before_action :add_initial_breadcrumbs
   include Pagy::Backend
+  before_action :add_home_breadcrumb
 
   def index
-    breadcrumbs.add "Home", root_path
+   add_breadcrumb "Home", root_path
+  end
+
+  private
+
+  def add_home_breadcrumb
+    add_breadcrumb "Home", root_path
   end
 end

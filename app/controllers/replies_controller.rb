@@ -5,7 +5,7 @@ class RepliesController < ApplicationController
     @replies = current_comment.replies.includes(:user)
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to episodes_show_url(current_episode) }
+      format.html { redirect_to episode_url(current_episode) }
     end
   end
 
@@ -13,7 +13,7 @@ class RepliesController < ApplicationController
     @count = current_comment.replies.length
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to episodes_show_url(current_episode) }
+      format.html { redirect_to episode_url(current_episode) }
     end
   end
 
@@ -21,7 +21,7 @@ class RepliesController < ApplicationController
     current_user.replies.create(reply_params)
 
     respond_to do |format|
-      format.html { redirect_to episodes_show(current_episode) }
+      format.html { redirect_to episode(current_episode) }
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(
           "reply-form",
