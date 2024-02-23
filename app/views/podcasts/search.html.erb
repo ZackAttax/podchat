@@ -1,5 +1,5 @@
 <div class="p-10">
-  <h1 class="font-bold text-4xl">Podcasts#search</h1>
+  <h1 class="font-bold text-4xl">Podcasts search</h1>
   <%= form_with(url: podcasts_search_path, method: :get, data: {turbo_frame: "podcasts"}) do |form| %>
 
   <%= form.label :query, "Search Podcast:", class: "block mb-2" %>
